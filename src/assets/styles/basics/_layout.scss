@@ -1,0 +1,48 @@
+/* Breakpoint mixins */
+
+@mixin for-mobile-layout {
+    @media (max-width: $break-mobile + 40) {
+        @content;
+    }
+}
+
+@mixin for-narrow-layout {
+    @media (min-width: $break-mobile + 40) {
+        @content;
+    }
+}
+
+@mixin for-normal-layout {
+    @media (min-width: $break-narrow + 40) {
+        @content;
+    }
+}
+
+@mixin for-wide-layout {
+    @media (min-width: $break-normal + 40) {
+        @content;
+    }
+}
+
+@mixin for-wider-layout {
+    @media (min-width: $break-wide + 40) {
+        @content;
+    }
+}
+.main-layout {
+    max-width: 320px;
+    margin: auto;
+
+    @include for-narrow-layout {
+        max-width: $break-mobile;
+    }
+    @include for-normal-layout {
+        max-width: $break-narrow;
+    }
+    @include for-wide-layout {
+        max-width: $break-normal;
+    }
+    @include for-wider-layout {
+        max-width: $break-wide;
+    }
+}
